@@ -8,22 +8,22 @@ reading go-ethereum code, analyze and comment it.
 当前的**总难度**：由从genesis块开始到当前块的难度**累加和**。
 
 1. 第一步，在挖矿的时候，计算Difficulty值，并将该值保存到每一个Block(包括Uncle)的Header里。
-![](pic/td05.png)
-![](pic/td04.png)
-![](pic/td03.png)
+![pic/td05.png](pic/td05.png)
+![pic/td04.png](pic/td04.png)
+![pic/td03.png](pic/td03.png)
 
 在此列举两个计算Difficulty的算法：
-https://github.com/ethereum/EIPs/issues/100
-![](pic/td01.png)
-![](pic/td02.png)
+[https://github.com/ethereum/EIPs/issues/100](https://github.com/ethereum/EIPs/issues/100)
+![pic/td01.png](pic/td01.png)
+![pic/td02.png](pic/td02.png)
 
 2. 校验难度值的时候，也用CalcDifficulty函数
-![](pic/td06.png)
-![](pic/td07.png)
-![](pic/td08.png)
+![pic/td06.png](pic/td06.png)
+![pic/td07.png](pic/td07.png)
+![pic/td08.png](pic/td08.png)
 
 3. 在insertChain里面动态的累加到Database的**Total Difficulty**中。
-![](pic/td09.png)
+![pic/td09.png](pic/td09.png)
 
 * 每次insertChain的调用，最初都是从genesis块开始的
 * 可能有分枝，但是所在的分枝最初也是从genesis块开始累加Difficulty值到**Total Difficulty**里面
@@ -32,7 +32,25 @@ https://github.com/ethereum/EIPs/issues/100
 * 每个Block在本地Database里都有一个**Total Difficulty**值可用
 
 本来以为，在insertChain里面动态的累加到Block的临时变量**td**里面，但是通过仔细查找后发现，这个**td**值在代码里面没有使用！而是通过读写数据库来直接获取和写入**Total Difficulty**值。基本上确认！
-![](pic/td10.png)
+![pic/td10.png](pic/td10.png)
+
+### 以太坊难度计算详解
+参考链接；[https://zhuanlan.zhihu.com/p/140750633](https://zhuanlan.zhihu.com/p/140750633)
+
+首先了解以太坊的各个发展阶段的名称：
+![pic/td11.png](pic/td11.png)
+
+这篇PDF文档详细说明了以太坊的难度计算细节：
+[http://zhenxiao.com/blockchain/20-ETH.pdf](doc/20-ETH.pdf)
+
+仔细看看以下四个计算Difficulty的函数：
+![pic/td13.png](pic/td13.png)
+![pic/td14.png](pic/td14.png)
+
+都是通过同一个函数（或者称其为：数学公式）`makeDifficultyCalculator`来生成的。
+**区别**仅限于推迟难度炸弹的Block数量。
+![pic/td12.png](pic/td12.png)
+
 
 ### Node Object
 一个客户端，包含各种服务goroutine
