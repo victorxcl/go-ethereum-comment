@@ -48,7 +48,13 @@ reading go-ethereum code, analyze and comment it.
 **区别**仅限于推迟难度炸弹的Block数量。
 ![pic/td12.png](pic/td12.png)
 
-要想了解上面的这个`makeDifficultyCalculator`函数的数学公式究竟干了什么，请仔细阅读这篇PDF文档[http://zhenxiao.com/blockchain/20-ETH.pdf](doc/20-ETH.pdf)。该文档详细说明了以太坊的难度计算细节。
+要想了解上面的这个`makeDifficultyCalculator`函数的数学公式究竟干了什么，请仔细阅读这篇PDF文档:
+
+* [http://zhenxiao.com/blockchain/20-ETH.pdf](http://zhenxiao.com/blockchain/20-ETH.pdf)
+
+* [doc/20-ETH.pdf](doc/20-ETH.pdf)
+
+该文档详细说明了以太坊的难度计算细节。
 
 
 ### Node Object
