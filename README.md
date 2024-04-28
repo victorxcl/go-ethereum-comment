@@ -56,6 +56,20 @@ reading go-ethereum code, analyze and comment it.
 
 该文档详细说明了以太坊的难度计算细节。
 
+### 叔块和最重链
+
+* [https://www.hellobtc.com/kp/kc/201904/1562.html](https://www.hellobtc.com/kp/kc/201904/1562.html)
+
+上面的链接解释了：
+
+* **比特币**和**以太坊**的**分叉**发生的概率比较
+* 为什么需要叔块
+* 以及叔块的奖励规则
+    ![pic/uncle01.png](pic/uncle01.png)
+    ![pic/uncle02.png](pic/uncle02.png)
+    ![pic/uncle03.png](pic/uncle03.png)
+    ![pic/uncle04.png](pic/uncle04.png)
+
 
 ### Node Object
 一个客户端，包含各种服务goroutine
