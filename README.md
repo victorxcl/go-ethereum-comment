@@ -31,7 +31,7 @@ reading go-ethereum code, analyze and comment it.
 * 该Td值也会缓存到数据库里面，在重启客户端的时候有用到，不能只保存的内存中。
 * 每个Block在本地Database里都有一个**Total Difficulty**值可用
 
-本来以为，在insertChain里面动态的累加到Block的临时变量**td**里面，但是通过仔细查找后发现，这个**td**值在代码里面没有使用！而是通过读写数据库来直接获取和写入**Total Difficulty**值。基本上确认！
+本来以为，在insertChain里面动态的累加到Block的临时变量**td**里面，但是通过仔细查找后发现，这个**td**值在代码里面没有被使用！而是通过读写数据库来直接获取和写入**Total Difficulty**值。基本上确认！
 ![pic/td10.png](pic/td10.png)
 
 ### 以太坊难度计算详解
@@ -40,9 +40,6 @@ reading go-ethereum code, analyze and comment it.
 首先了解以太坊的各个发展阶段的名称：
 ![pic/td11.png](pic/td11.png)
 
-这篇PDF文档详细说明了以太坊的难度计算细节：
-[http://zhenxiao.com/blockchain/20-ETH.pdf](doc/20-ETH.pdf)
-
 仔细看看以下四个计算Difficulty的函数：
 ![pic/td13.png](pic/td13.png)
 ![pic/td14.png](pic/td14.png)
@@ -50,6 +47,8 @@ reading go-ethereum code, analyze and comment it.
 都是通过同一个函数（或者称其为：数学公式）`makeDifficultyCalculator`来生成的。
 **区别**仅限于推迟难度炸弹的Block数量。
 ![pic/td12.png](pic/td12.png)
+
+要想了解上面的这个`makeDifficultyCalculator`函数的数学公式究竟干了什么，请仔细阅读这篇PDF文档[http://zhenxiao.com/blockchain/20-ETH.pdf](doc/20-ETH.pdf)。该文档详细说明了以太坊的难度计算细节。
 
 
 ### Node Object
