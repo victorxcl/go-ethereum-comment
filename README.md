@@ -93,17 +93,22 @@ reading go-ethereum code, analyze and comment it.
 主要是各种key的常量。用来持久化大量的缓存变量。例如：TotalDifficulty
 
 
-## 基本流程
+## Peer之间的`Block`同步流程
 
-* downloader下载得到的block通过blockchain的InsertChain添加到区块链中。
+* blockchain的update
+    ![pic/sync01.png](pic/sync01.png)
+    * blockchain自己就是一个goroutine
+    ![pic/sync01.png](pic/sync02.png)
+
+* 和downloader的`Block`同步交互
+    * 在InsertChain里面加上断点
+        ![pic/sync02.png](pic/sync03.png)
+    * 可以看到在downloader里面调用了blockchain的`InsertChain`函数
+        ![pic/sync03.png](pic/sync04.png)
 
 * blockchain在eth和downloader里面通过config共享同一个对象。
+    ![pic/sync04.png](pic/sync05.png)
 
-### blockchain update
-
-BlockChain的SetHeadBeyondRoot直接设定当前链。reorg最长链分枝的时候，也是调用SetHeadBeyondRoot函数。
-
-### downloader
 ### 启动geth
 
 ## 主要流程
@@ -132,7 +137,7 @@ BlockChain的SetHeadBeyondRoot直接设定当前链。reorg最长链分枝的时
     - 更新`oldBlock`和`newBlock`为各自的**父块**
     - 重新执行这个for循环
 
-* 执行到了这里，就找到了公共的块了。
+* 执行到了这里，就找到了公共的块。只需要将当前最长链的所有块依次写入数据库，并**设置当前链**标志位就表示reorg成功了。
     ![pic/reorg04.png](pic/reorg04.png)
     - 因为`oldChain`或`newChain`中，高度高的块在数组的靠前的位置
     - 所以需要反向遍历`newChain`，高度从小到大
