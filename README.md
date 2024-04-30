@@ -97,7 +97,7 @@ reading go-ethereum code, analyze and comment it.
 
 * blockchain的update
     ![pic/sync01.png](pic/sync01.png)
-    * blockchain自己就是一个goroutine
+    * blockchain的update自己就是一个goroutine
     ![pic/sync01.png](pic/sync02.png)
 
 * 和downloader的`Block`同步交互
