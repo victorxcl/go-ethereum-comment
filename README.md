@@ -10,6 +10,11 @@ reading go-ethereum code, analyze and comment it.
 
 ### [叔块和最重链](叔块和最重链.md)
 
+### [Peer之间的Block同步流程](Peer之间的Block同步流程.md)
+### [如何处理分叉(reorg)](如何处理分叉.md)
+
+### [挖矿(miner)流程](挖矿流程.md)
+
 ### Node Object
 一个客户端，包含各种服务goroutine
 
@@ -29,14 +34,3 @@ reading go-ethereum code, analyze and comment it.
 ### Database的schema
 
 主要是各种key的常量。用来持久化大量的缓存变量。例如：TotalDifficulty
-
-
-## [Peer之间的Block同步流程](Peer之间的Block同步流程.md)
-
-### 启动geth
-
-## 主要流程
-
-### 本地同步流程
-#### 如何存盘
-#### [如何处理分叉(reorg)](如何处理分叉.md)
