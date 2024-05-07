@@ -9,11 +9,10 @@ reading go-ethereum code, analyze and comment it.
 ### [以太坊难度计算详解](以太坊难度计算详解.md)
 
 ### [叔块和最重链](叔块和最重链.md)
+### [叔块最多有几个?](叔块最多有几个.md)
 
 ### [Peer之间的Block同步流程](Peer之间的Block同步流程.md)
 ### [如何处理分叉(reorg)](如何处理分叉.md)
-
-### [挖矿(miner)流程](挖矿流程.md)
 
 ### Node Object
 一个客户端，包含各种服务goroutine
