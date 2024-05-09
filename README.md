@@ -14,14 +14,18 @@ reading go-ethereum code, analyze and comment it.
 ### [Peer之间的Block同步流程](Peer之间的Block同步流程.md)
 ### [如何处理分叉(reorg)](如何处理分叉.md)
 
-### Node Object
+
+### genesisBlock里面有什么？
+
+### node.Node Object
 一个客户端，包含各种服务goroutine
 
 1. 管理account
 2. 管理P2P对象
 3. 提供HTTP，WebSocket，IPC，RPC的服务对象
+4. Lifecycle接口操作：Start和Stop；启动和停止所有的服务
 
-### Ethereum Object
+### eth.Ethereum Object
 处理以太坊区块链相关的服务对象
 
 1. 新来的区块处理
